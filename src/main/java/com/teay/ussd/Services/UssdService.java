@@ -89,6 +89,8 @@ public class UssdService {
                     try {
                         BigDecimal balance = accountService.checkBalance(phoneNumber, input2);
                         sessionService.clearState(sessionId);
+                        return String.valueOf(balance);
+
                     } catch (InvalidPinException e) {
                         return "END " + e.getMessage();
                     } catch (RuntimeException e) {
@@ -123,7 +125,7 @@ public class UssdService {
                 throw new RuntimeException(e);
             }
         }
-        return "ENd Session error. Please try again.";
+        return "END Session error. Please try again.";
     }
 
     private boolean isValidPin(String pin){

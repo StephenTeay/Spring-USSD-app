@@ -1,16 +1,21 @@
 package com.teay.ussd.Services;
 
 import com.teay.ussd.Config.EnvConfig;
+import com.teay.ussd.Config.TwilioConfig;
 import com.twilio.exception.ApiException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class SMSNotifServiceImpl implements SMSNotifService{
     private final EnvConfig envConfig;
+    private final TwilioConfig twilioConfig;
 
-    public SMSNotifServiceImpl(EnvConfig envConfig) {
+    public SMSNotifServiceImpl(EnvConfig envConfig, TwilioConfig twilioConfig) {
         this.envConfig = envConfig;
+        this.twilioConfig = twilioConfig;
     }
 
     @Override
@@ -20,7 +25,7 @@ public class SMSNotifServiceImpl implements SMSNotifService{
                 PhoneNumber to = new PhoneNumber(phoneNumer);
                 PhoneNumber from = new PhoneNumber(envConfig.getPhoneNumber());
 
-                return Message.creator(to,from,message);
+                return Message.creator(to,from,message).create();
             }
             else{
                 throw new IllegalArgumentException(

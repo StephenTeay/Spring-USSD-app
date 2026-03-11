@@ -68,7 +68,7 @@ public class AccountService {
 
     public BigDecimal checkBalance(String phoneNumber, String pin) throws Exception {
         Account account = accountRepository.findById(phoneNumber).orElseThrow(()-> new RuntimeException("Account doesn't exist"));
-        if(account.getHashedPin().equals(passwordEncoder.encode(pin))) {
+        if(passwordEncoder.matches(pin,account.getHashedPin())){
             BigDecimal balance = account.getBalance();
             smsNotifService.sendSMS(phoneNumber,String.valueOf(balance));
             return balance;
