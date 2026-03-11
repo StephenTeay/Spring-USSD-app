@@ -18,14 +18,14 @@
 
 ## 🛠 Tech Stack
 
-| Layer | Technology |
-|---|---|
-| Backend | Java 22, Spring Boot 3.x |
-| Database | MySQL 8.0 (Persistent storage) |
-| Caching/State | Redis (Session tracking) |
+| Layer | Technology                      |
+|---|---------------------------------|
+| Backend | Java 21, Spring Boot 3.x        |
+| Database | MySQL 8.0 (Persistent storage)  |
+| Caching/State | Redis (Session tracking)        |
 | Security | Spring Security (Crypto module) |
-| Communication | Twilio API |
-| Infrastructure | Docker, Docker Compose |
+| Communication | Twilio API                      |
+| Infrastructure | Docker, Docker Compose          |
 
 ---
 
