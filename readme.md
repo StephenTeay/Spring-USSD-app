@@ -60,7 +60,7 @@ While current SMS notifications are synchronous, the architecture is prepared to
 **1. Clone the Repository:**
 
 ```bash
-git clone https://github.com/your-username/ussd-banking.git
+git clone https://github.com/StephenTeay/Spring-USSD-app
 cd ussd-banking
 ```
 
