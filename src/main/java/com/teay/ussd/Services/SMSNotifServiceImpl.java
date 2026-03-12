@@ -21,8 +21,13 @@ public class SMSNotifServiceImpl implements SMSNotifService{
     @Override
     public Object sendSMS(String phoneNumer, String message) throws Exception {
         try{
-            if(phoneNumer != null){
-                PhoneNumber to = new PhoneNumber(phoneNumer);
+            if(phoneNumer != null ){
+                String cleanedPhoneNumber = phoneNumer.replaceAll("[^0-9]", "");
+                if(cleanedPhoneNumber.startsWith("0") && cleanedPhoneNumber.length() ==11){
+                    cleanedPhoneNumber = "234"+cleanedPhoneNumber.substring(1);
+                }
+                String cleanedPhoneNumberWithSym = cleanedPhoneNumber.startsWith("+")? cleanedPhoneNumber : "+" + cleanedPhoneNumber;
+                PhoneNumber to = new PhoneNumber(cleanedPhoneNumberWithSym);
                 PhoneNumber from = new PhoneNumber(envConfig.getPhoneNumber());
 
                 return Message.creator(to,from,message).create();

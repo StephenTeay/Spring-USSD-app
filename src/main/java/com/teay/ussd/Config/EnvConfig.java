@@ -1,9 +1,10 @@
 package com.teay.ussd.Config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
-@Component
+@Configuration
 public class EnvConfig {
     @Value("${TWILIO_AUTH}")
     private String authToken;

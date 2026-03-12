@@ -61,7 +61,7 @@ public class AccountService {
         Account account = accountRepository.findById(phoneNumber).orElseThrow(()->new RuntimeException("Account doesn't exist"));
         account.setBalance(account.getBalance().add(amount));
         accountRepository.save(account);
-        String message = "END Account credited with: " + amount + "New Balance: " + account.getBalance();
+        String message = "END Account credited with: " + amount + " New Balance: " + account.getBalance();
         smsNotifService.sendSMS(phoneNumber,message);
         return message;
     }
@@ -70,7 +70,8 @@ public class AccountService {
         Account account = accountRepository.findById(phoneNumber).orElseThrow(()-> new RuntimeException("Account doesn't exist"));
         if(passwordEncoder.matches(pin,account.getHashedPin())){
             BigDecimal balance = account.getBalance();
-            smsNotifService.sendSMS(phoneNumber,String.valueOf(balance));
+            String response = "Balance: "+ balance;
+            smsNotifService.sendSMS(phoneNumber,response);
             return balance;
         }
         throw new InvalidPinException("Invalid Pin");
